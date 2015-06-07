@@ -15,4 +15,4 @@ The application should have at least one class, in addition to the applicationâ€
 The source code must demonstrate the use of Array or ArrayList.
 There should be proper documentation in the source code.
 
-CommissionCalc3\src to view the code
+To run the program, download the jar file (CommissionCalc3/dist/CommissionCalc3.jar view raw) Then open the Command Prompt, change directory to downloads, paste "java -jar CommissionCalc3.jar"
