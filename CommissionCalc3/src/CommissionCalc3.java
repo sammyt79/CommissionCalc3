@@ -49,34 +49,34 @@ public class CommissionCalc3 {
         numEmployees = Integer.parseInt(inputTest);
 
         // Create an Employee array.
-        Employee[] user = new Employee[numEmployees];
+        Employee[] employees = new Employee[numEmployees];
 
         // Call the getEmployees method to get data for each employee.
-        getEmployees(user);
+        getEmployees(employees);
 
         System.out.println("You entered the following:");
 
         System.out.println();
 
         // Display the data that the user entered.
-        for (int index = 0; index < user.length; index++) {
+        for (int index = 0; index < employees.length; index++) {
             System.out.println("Employee " + (index + 1));
             System.out.println("Name: "
-                    + user[index].getFullName());
+                    + employees[index].getFullName());
             System.out.println("Salary: $"
-                    + dollar.format(user[index].getSalary()));
+                    + dollar.format(employees[index].getSalary()));
             System.out.println("Annual sales: $"
-                    + dollar.format(user[index].getAnnualSales()));
+                    + dollar.format(employees[index].getAnnualSales()));
             System.out.println("Total commission: $"
-                    + dollar.format(user[index].getTotalCommis()));
+                    + dollar.format(employees[index].getTotalCommis()));
             System.out.println("Total compensation: $"
-                    + dollar.format(user[index].getTotalComp()));
+                    + dollar.format(employees[index].getTotalComp()));
             System.out.println();
 
             // Set highest earner and highest total compensation
-            if (user[index].getTotalComp() > highestTotalComp) {
-                highestTotalComp = user[index].getTotalComp();
-                highestEarner = user[index].getFullName();
+            if (employees[index].getTotalComp() > highestTotalComp) {
+                highestTotalComp = employees[index].getTotalComp();
+                highestEarner = employees[index].getFullName();
             }
         }
 
@@ -90,23 +90,23 @@ public class CommissionCalc3 {
          * Initiate array to calculate sales needed to meet the total
          * compensation of the highest earner.
          */
-        for (int index = 0; index < user.length; index++) {
+        for (int index = 0; index < employees.length; index++) {
             // Exclude highest earner
-            if (user[index].getTotalComp() != highestTotalComp) {
+            if (employees[index].getTotalComp() != highestTotalComp) {
                 // Continue testing data until total comp. reaches highest.
-                while (user[index].getNeededSales() < highestTotalComp) {
+                while (employees[index].getNeededSales() < highestTotalComp) {
                     // Increment sales +1 (refer to Employee object)
-                    user[index].setNeededSales();
+                    employees[index].setNeededSales();
 
                     // Display needed sales when calculation ends.
-                    if (user[index].getNeededSales() >= highestTotalComp) {
+                    if (employees[index].getNeededSales() >= highestTotalComp) {
                         System.out.println("In order for "
-                                + user[index].getFullName()
+                                + employees[index].getFullName()
                                 + " to reach " + highestEarner
                                 + "'s total compensation, sales would need to "
                                 + "be increased by $"
-                                + dollar.format(user[index].getDiffer()
-                                        - user[index].getAnnualSales()));
+                                + dollar.format(employees[index].getDiffer()
+                                        - employees[index].getAnnualSales()));
                     }
                 }
             }
@@ -165,11 +165,11 @@ public class CommissionCalc3 {
                 employeeNumber = employeeNumber - 1;
 
                 // Create a reset for annual sales.
-                user[employeeNumber].setAnnualSalesFinal();
+                employees[employeeNumber].setAnnualSalesFinal();
 
                 System.out.println();
 
-                System.out.println(user[employeeNumber].getFullName());
+                System.out.println(employees[employeeNumber].getFullName());
 
                 // Display the table headings
                 System.out.println("Total sales\t\t\t\tTotal compensation");
@@ -177,58 +177,58 @@ public class CommissionCalc3 {
                         + "------------------");
 
                 // Declare controlExit variable 
-                double controlExit = user[employeeNumber].getAnnualSales() * 1.5;
+                double controlExit = employees[employeeNumber].getAnnualSales() * 1.5;
 
                 // Innitiate loop for projected compensation table
-                while (controlExit >= user[employeeNumber].getAnnualSales()) {
-                    if (user[employeeNumber].getAnnualSales()
-                            >= user[employeeNumber].getSalesTarget()) {
+                while (controlExit >= employees[employeeNumber].getAnnualSales()) {
+                    if (employees[employeeNumber].getAnnualSales()
+                            >= employees[employeeNumber].getSalesTarget()) {
                         System.out.println("$"
-                                + (dollar.format(user[employeeNumber].getAnnualSales())
+                                + (dollar.format(employees[employeeNumber].getAnnualSales())
                                 + "\t\t\t\t$"
-                                + (dollar.format(user[employeeNumber].getTotalComp()))));
+                                + (dollar.format(employees[employeeNumber].getTotalComp()))));
 
                         // increment annual sales
-                        user[employeeNumber].setAnnualSales(user[employeeNumber].getAnnualSales()
+                        employees[employeeNumber].setAnnualSales(employees[employeeNumber].getAnnualSales()
                                 + 5000);
-                    } else if (user[employeeNumber].getAnnualSales()
-                            >= user[employeeNumber].getSalesTarget()
-                            * user[employeeNumber].getIncentStart()) {
+                    } else if (employees[employeeNumber].getAnnualSales()
+                            >= employees[employeeNumber].getSalesTarget()
+                            * employees[employeeNumber].getIncentStart()) {
                         System.out.println("$"
-                                + (dollar.format(user[employeeNumber].getAnnualSales())
+                                + (dollar.format(employees[employeeNumber].getAnnualSales())
                                 + "\t\t\t\t$"
-                                + (dollar.format(user[employeeNumber].getTotalComp()))));
+                                + (dollar.format(employees[employeeNumber].getTotalComp()))));
 
                         // increment annual sales
-                        user[employeeNumber].setAnnualSales(user[employeeNumber].getAnnualSales()
+                        employees[employeeNumber].setAnnualSales(employees[employeeNumber].getAnnualSales()
                                 + 5000);
 
                         // Sales target benchmark declaration
-                        if (user[employeeNumber].getAnnualSales()
-                                >= user[employeeNumber].getSalesTarget()) {
+                        if (employees[employeeNumber].getAnnualSales()
+                                >= employees[employeeNumber].getSalesTarget()) {
                             System.out.println("\nSales target hit, commission is "
                                     + "multiplied by set acceleration factor.");
                         }
                     } else {
-                        System.out.println("$" + (dollar.format(user[employeeNumber].getAnnualSales())
+                        System.out.println("$" + (dollar.format(employees[employeeNumber].getAnnualSales())
                                 + "\t\t\t\t$"
-                                + (dollar.format(user[employeeNumber].getTotalComp()))));
+                                + (dollar.format(employees[employeeNumber].getTotalComp()))));
 
                         // increment annual sales
-                        user[employeeNumber].setAnnualSales(user[employeeNumber].getAnnualSales() + 5000);
+                        employees[employeeNumber].setAnnualSales(employees[employeeNumber].getAnnualSales() + 5000);
 
                         // Commission benchmark declaration
-                        if (user[employeeNumber].getAnnualSales()
-                                >= user[employeeNumber].getSalesTarget()
-                                * user[employeeNumber].getIncentStart()) {
+                        if (employees[employeeNumber].getAnnualSales()
+                                >= employees[employeeNumber].getSalesTarget()
+                                * employees[employeeNumber].getIncentStart()) {
                             System.out.println("\nSales have reached "
-                                    + percent.format(user[employeeNumber].getIncentStart())
+                                    + percent.format(employees[employeeNumber].getIncentStart())
                                     + " of sales target. Commission is added to pay.");
                         }
                     }
                 }
                 // Reset annual sales to employee's annual sales
-                user[employeeNumber].resetAnnualSales();
+                employees[employeeNumber].resetAnnualSales();
 
                 // Prompt user to view another employee's 
                 // projected total compensation
